@@ -1,0 +1,169 @@
+{
+  "name": "eleva-formatter",
+  "displayName": "Eleva.js Formatter",
+  "description": "Code formatting and syntax highlighting for Eleva.js applications",
+  "version": "0.1.0",
+  "publisher": "TarekRaafat",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Formatters",
+    "Linters"
+  ],
+  "keywords": [
+    "eleva",
+    "elevejs",
+    "formatter",
+    "javascript",
+    "vanilla"
+  ],
+  "icon": "images/eleva-logo.png",
+  "galleryBanner": {
+    "color": "#f9f9f9",
+    "theme": "light"
+  },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Eleva.js Formatter",
+      "properties": {
+        "elevaFormatter.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable Eleva.js code formatting"
+        },
+        "elevaFormatter.formatOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Format Eleva.js code on save"
+        },
+        "elevaFormatter.templateStyle": {
+          "type": "string",
+          "enum": [
+            "backticks",
+            "singleQuotes",
+            "doubleQuotes"
+          ],
+          "default": "backticks",
+          "description": "Preferred quote style for template strings"
+        },
+        "elevaFormatter.indentSize": {
+          "type": "number",
+          "default": 2,
+          "description": "Number of spaces for indentation"
+        },
+        "elevaFormatter.enableHighlighting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax highlighting for Eleva.js events and signals"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "elevaFormatter.format",
+        "title": "Format with Eleva.js Formatter"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "elevaFormatter.format",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e",
+        "when": "editorTextFocus && editorLangId == 'javascript'"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorLangId == 'javascript'",
+          "command": "elevaFormatter.format",
+          "group": "1_modification"
+        }
+      ]
+    },
+    "grammars": [
+      {
+        "scopeName": "source.js.eleva-template",
+        "path": "./syntaxes/eleva-template.json",
+        "injectTo": [
+          "source.js",
+          "source.ts"
+        ]
+      }
+    ],
+    "colors": [
+      {
+        "id": "eleva.event",
+        "description": "Color for Eleva.js event handlers (@click, etc.)",
+        "defaults": {
+          "dark": "#E06C75",
+          "light": "#D7378A",
+          "highContrast": "#E06C75"
+        }
+      },
+      {
+        "id": "eleva.signal",
+        "description": "Color for Eleva.js signal interpolations",
+        "defaults": {
+          "dark": "#61AFEF",
+          "light": "#2393D5",
+          "highContrast": "#61AFEF"
+        }
+      },
+      {
+        "id": "eleva.property",
+        "description": "Color for Eleva.js component properties",
+        "defaults": {
+          "dark": "#98C379",
+          "light": "#4E9A06",
+          "highContrast": "#98C379"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "vscode:prepublish": "npm run package",
+    "webpack": "webpack --mode development",
+    "webpack:watch": "webpack --mode development --watch",
+    "package": "webpack --mode production --devtool hidden-source-map"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.98.0",
+    "eslint": "^7.32.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.1",
+    "typescript": "^4.4.3",
+    "vscode-test": "^1.6.1",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "prettier": "^2.8.8"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TarekRaafat/eleva-formatter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TarekRaafat/eleva-formatter/issues"
+  },
+  "homepage": "https://github.com/TarekRaafat/eleva-formatter#readme",
+  "author": {
+    "name": "Tarek Raafat",
+    "email": "tarek.m.raafat@gmail.com",
+    "url": "https://www.tarekraafat.com"
+  }
+}
