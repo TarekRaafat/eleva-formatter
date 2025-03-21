@@ -4,6 +4,7 @@
   "description": "Code formatting and syntax highlighting for Eleva.js applications",
   "version": "0.1.1",
   "publisher": "TarekRaafat",
+  "pricing": "Free",
   "engines": {
     "vscode": "^1.98.0"
   },
